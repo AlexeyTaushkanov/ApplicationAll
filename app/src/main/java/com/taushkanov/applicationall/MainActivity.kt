@@ -11,14 +11,9 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
-        val textView: TextView = findViewById(R.id.first_activity_text_view)
-
-        textView.setOnClickListener {moveToNextScreen()}
-    }
-
-    private fun moveToNextScreen(){
-        val intent = Intent(this,MovieDetailsActivity::class.java)
-        startActivity(intent)
+        supportFragmentManager.beginTransaction()
+            .add(R.id.main_container, FragmentMoviesList())
+            .commit()
     }
 
 }
