@@ -35,14 +35,24 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        /**
+        fun newInstance(academy: String): FragmentMoviesDetails {
+            val args = Bundle()
+            args.putString("android", academy)
+            val fragment = FragmentMoviesDetails()
+            fragment.arguments = args
+            return fragment
+        }
+    }
+
+    /*companion object {
+        *//**
          * Use this factory method to create a new instance of
          * this fragment using the provided parameters.
          *
          * @param param1 Parameter 1.
          * @param param2 Parameter 2.
          * @return A new instance of fragment FragmentMoviesDetails.
-         */
+         *//*
         // TODO: Rename and change types and number of parameters
         @JvmStatic fun newInstance(param1: String, param2: String) =
                 FragmentMoviesDetails().apply {
@@ -51,5 +61,5 @@ class FragmentMoviesDetails : Fragment() {
                         putString(ARG_PARAM2, param2)
                     }
                 }
-    }
+    }*/
 }
