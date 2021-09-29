@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity(), FragmentClickListener {
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            fragmentMoviesList = FragmentMoviesList.newInstance2("lskndf")
+            fragmentMoviesList = FragmentMoviesList.newInstance2()
             fragmentMoviesList?.apply {
                 supportFragmentManager.beginTransaction()
                     .add(R.id.main_container, FragmentMoviesList())

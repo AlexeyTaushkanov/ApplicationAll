@@ -1,6 +1,5 @@
 package com.taushkanov.applicationall
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,18 +9,15 @@ import androidx.recyclerview.widget.RecyclerView
 import com.taushkanov.applicationall.models.Movie
 
 class MoviesAdapter(
-    context: Context,
     var movies: List<Movie>
 ) : RecyclerView.Adapter<DataViewHolder>() {
-
-    private val inflater: LayoutInflater = LayoutInflater.from(context)
 
     override fun getItemCount(): Int = movies.size
 
     fun getItem(position: Int) : Movie = movies[position]
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): DataViewHolder {
-        return DataViewHolder(inflater.inflate(R.layout.view_holder_movie,parent,false))
+        return DataViewHolder(LayoutInflater.from(parent.context).inflate(R.layout.view_holder_movie,parent,false))
     }
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
@@ -46,14 +42,14 @@ class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
     fun bind(movie: Movie) {
         photo.setImageResource(movie.photo)
-        age.text = movie.name
-        if (movie.like) like.visibility = View.VISIBLE
+        age.text = movie.age
+        like.visibility = if (movie.like) View.VISIBLE else View.GONE
         genre.text = movie.genre
-        if (movie.star1) star1.setImageResource(R.drawable.ic_star_icon)
-        if (movie.star2) star2.setImageResource(R.drawable.ic_star_icon)
-        if (movie.star3) star3.setImageResource(R.drawable.ic_star_icon)
-        if (movie.star4) star4.setImageResource(R.drawable.ic_star_icon)
-        if (movie.star5) star5.setImageResource(R.drawable.ic_star_icon)
+        if (movie.star1) star1.setImageResource(R.drawable.ic_star_icon) //else star1.setImageResource(R.drawable.ic_star_icon_gray)
+        if (movie.star2) star2.setImageResource(R.drawable.ic_star_icon) //else star1.setImageResource(R.drawable.ic_star_icon_gray)
+        if (movie.star3) star3.setImageResource(R.drawable.ic_star_icon) //else star1.setImageResource(R.drawable.ic_star_icon_gray)
+        if (movie.star4) star4.setImageResource(R.drawable.ic_star_icon) //else star1.setImageResource(R.drawable.ic_star_icon_gray)
+        if (movie.star5) star5.setImageResource(R.drawable.ic_star_icon) //else star1.setImageResource(R.drawable.ic_star_icon_gray)
         reviews.text = movie.reviews
         name.text = movie.name
         duration.text = movie.duration
