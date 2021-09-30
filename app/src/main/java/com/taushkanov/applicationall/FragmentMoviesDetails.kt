@@ -35,12 +35,8 @@ class FragmentMoviesDetails : Fragment() {
     }
 
     companion object {
-        fun newInstance(academy: String): FragmentMoviesDetails {
-            val args = Bundle()
-            args.putString("android", academy)
-            val fragment = FragmentMoviesDetails()
-            fragment.arguments = args
-            return fragment
+        fun newInstance(): FragmentMoviesDetails {
+            return FragmentMoviesDetails()
         }
     }
 

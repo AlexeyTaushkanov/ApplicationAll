@@ -32,7 +32,7 @@ class MainActivity : AppCompatActivity(), FragmentClickListener {
 
     override fun onChangeButtonClicked() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_container, FragmentMoviesDetails.newInstance("123"))
+            .add(R.id.main_container, FragmentMoviesDetails.newInstance())
             .addToBackStack(null)
             .commit()
     }

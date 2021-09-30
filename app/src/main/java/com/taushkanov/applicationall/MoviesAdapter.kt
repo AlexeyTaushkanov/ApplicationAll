@@ -9,7 +9,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.taushkanov.applicationall.models.Movie
 
 class MoviesAdapter(
-    var movies: List<Movie>
+    var movies: List<Movie>,
+    private val onClickListener: MyOnClickListener
 ) : RecyclerView.Adapter<DataViewHolder>() {
 
     override fun getItemCount(): Int = movies.size
@@ -22,11 +23,15 @@ class MoviesAdapter(
 
     override fun onBindViewHolder(holder: DataViewHolder, position: Int) {
         holder.bind(getItem(position))
+        holder.foundation.setOnClickListener {
+            onClickListener.onClicked(holder.name.text)
+        }
     }
 }
 
 class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
+    val foundation: ImageView = view.findViewById(R.id.imageView)
     private val photo: ImageView = view.findViewById(R.id.photo)
     private val age: TextView = view.findViewById(R.id.age)
     private val like: ImageView = view.findViewById(R.id.like)
@@ -37,7 +42,7 @@ class DataViewHolder(view: View) : RecyclerView.ViewHolder(view) {
     private val star4: ImageView = view.findViewById(R.id.star4)
     private val star5: ImageView = view.findViewById(R.id.star5)
     private val reviews: TextView = view.findViewById(R.id.reviews)
-    private val name: TextView = view.findViewById(R.id.name)
+    val name: TextView = view.findViewById(R.id.name)
     private val duration: TextView = view.findViewById(R.id.duration)
 
     fun bind(movie: Movie) {
