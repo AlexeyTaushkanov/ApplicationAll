@@ -1,5 +1,6 @@
 package com.taushkanov.applicationall
 
+import android.content.Context
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -34,12 +35,24 @@ class FragmentMoviesList : Fragment() {
                 if (name == "Avengers: End Game") {
                     fragmentClickListener?.onChangeButtonClicked()
                 }
-                    else Toast.makeText(context,"$name",Toast.LENGTH_SHORT).show()
+                    else Toast.makeText(context, name,Toast.LENGTH_SHORT).show()
             }
 
         })
         recycler.adapter = adapter
         recycler.layoutManager = StaggeredGridLayoutManager(2,1)
+    }
+
+    override fun onDetach() {
+        super.onDetach()
+        fragmentClickListener = null
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is FragmentClickListener) {
+            fragmentClickListener = context
+        }
     }
 
     companion object {
