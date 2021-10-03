@@ -11,6 +11,20 @@
         android:layout_height="wrap_content"
         >
 
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_end="16dp" />
+
+        <androidx.constraintlayout.widget.Guideline
+            android:id="@+id/guideline2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintGuide_begin="16dp" />
+
         <ImageView
             android:id="@+id/banner"
             android:layout_width="0dp"
@@ -206,127 +220,20 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/megaText" />
 
-        <ImageView
-            android:id="@+id/robert"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rv_actor"
             android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginTop="7dp"
-            android:src="@drawable/actor"
-            android:adjustViewBounds="true"
-            app:layout_constraintStart_toStartOf="@+id/guideline2"
-            app:layout_constraintEnd_toStartOf="@+id/chris"
+            android:layout_height="118dp"
+            android:layout_marginTop="24dp"
             app:layout_constraintTop_toBottomOf="@+id/cast"
-            app:layout_constraintHorizontal_chainStyle="spread"
-            />
-
-        <ImageView
-            android:id="@+id/chris"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/actor_1"
-            android:adjustViewBounds="true"
-            app:layout_constraintEnd_toStartOf="@+id/mark"
-            app:layout_constraintStart_toEndOf="@id/robert"
-            app:layout_constraintTop_toBottomOf="@+id/cast" />
-
-        <ImageView
-            android:id="@+id/mark"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="8dp"
-            android:src="@drawable/actor_2"
-            android:adjustViewBounds="true"
-            app:layout_constraintEnd_toStartOf="@+id/chris2"
-            app:layout_constraintStart_toEndOf="@id/chris"
-            app:layout_constraintTop_toBottomOf="@+id/cast" />
-
-        <ImageView
-            android:id="@+id/chris2"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:layout_marginStart="8dp"
-            android:layout_marginEnd="0dp"
-            android:src="@drawable/actor_3"
-            android:adjustViewBounds="true"
-            app:layout_constraintEnd_toEndOf="@+id/guideline1"
-            app:layout_constraintStart_toEndOf="@id/mark"
-            app:layout_constraintTop_toBottomOf="@+id/cast" />
-
-        <TextView
-            android:id="@+id/robertText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:text="@string/robert_downey_jr"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/robert"
             app:layout_constraintStart_toStartOf="@id/guideline2"
-            app:layout_constraintEnd_toEndOf="@id/robert"/>
-
-        <TextView
-            android:id="@+id/chrisText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:text="@string/chris_evans"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/chris"
-            app:layout_constraintStart_toStartOf="@id/chris"
-            app:layout_constraintEnd_toEndOf="@id/chris"
+            app:layout_constraintEnd_toEndOf="@id/guideline1"
+            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            tools:spanCount="4"
+            tools:listitem="@layout/view_holder_actor"
+            tools:orientation="horizontal"
+            tools:scrollbars="horizontal"
             />
-
-        <TextView
-            android:id="@+id/markText"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:text="@string/mark_ruffalo"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/mark"
-            app:layout_constraintStart_toStartOf="@id/mark"
-            app:layout_constraintEnd_toEndOf="@id/mark" />
-
-        <TextView
-            android:id="@+id/chris2Text"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="6dp"
-            android:layout_marginStart="0dp"
-            android:layout_marginEnd="0dp"
-            android:text="@string/chris_hemsworth"
-            android:textColor="@color/white"
-            app:layout_constraintTop_toBottomOf="@+id/chris2"
-            app:layout_constraintStart_toStartOf="@id/chris2"
-            app:layout_constraintEnd_toEndOf="@id/chris2"
-            app:layout_constraintHorizontal_bias="0.0"/>
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_end="16dp" />
-
-        <androidx.constraintlayout.widget.Guideline
-            android:id="@+id/guideline2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:orientation="vertical"
-            app:layout_constraintGuide_begin="16dp" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </ScrollView>
