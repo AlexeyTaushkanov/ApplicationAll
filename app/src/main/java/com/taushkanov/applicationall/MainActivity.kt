@@ -1,44 +1,63 @@
 package com.taushkanov.applicationall
 
-import android.content.Context
-import android.content.Intent
-import android.media.Image
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.widget.TextView
-import android.widget.Toast
-import androidx.core.content.ContextCompat.startActivity
+import androidx.appcompat.app.AppCompatActivity
+import com.taushkanov.applicationall.data.JsonMovieRepository
+import com.taushkanov.applicationall.data.MovieRepository
+import com.taushkanov.applicationall.di.MovieRepositoryProvider
+import com.taushkanov.applicationall.features.moviedetails.MovieDetailsFragment
+import com.taushkanov.applicationall.features.movies.MoviesListFragment
+import com.taushkanov.applicationall.model.Movie
 
-class MainActivity : AppCompatActivity(), FragmentClickListener {
+class MainActivity : AppCompatActivity(),
+    MoviesListFragment.MoviesListItemClickListener,
+    MovieDetailsFragment.MovieDetailsBackClickListener,
+    MovieRepositoryProvider {
 
-    private var fragmentMoviesList : FragmentMoviesList? = null
+    private val jsonMovieRepository = JsonMovieRepository(this)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
         if (savedInstanceState == null) {
-            fragmentMoviesList = FragmentMoviesList.newInstance2()
-            fragmentMoviesList?.apply {
-                supportFragmentManager.beginTransaction()
-                    .add(R.id.main_container, FragmentMoviesList())
-                    .commit()
-            }
-        }
-        else {
-            fragmentMoviesList = supportFragmentManager.findFragmentByTag(FRAGMENT_TAG_1) as? FragmentMoviesList
+            routeToMoviesList()
         }
     }
 
-    override fun onChangeButtonClicked() {
+    override fun onMovieSelected(movie: Movie) {
+        routeToMovieDetails(movie)
+    }
+
+    override fun onMovieDeselected() {
+        routeBack()
+    }
+
+    private fun routeToMoviesList() {
         supportFragmentManager.beginTransaction()
-            .add(R.id.main_container, FragmentMoviesDetails.newInstance())
-            .addToBackStack(null)
+            .replace(
+                R.id.container,
+                MoviesListFragment.create(),
+                MoviesListFragment::class.java.simpleName
+            )
+            .addToBackStack("trans:${MoviesListFragment::class.java.simpleName}")
             .commit()
     }
 
-    companion object {
-        const val FRAGMENT_TAG_1 = "Fragment"
+    private fun routeToMovieDetails(movie: Movie) {
+        supportFragmentManager.beginTransaction()
+            .add(
+                R.id.container,
+                MovieDetailsFragment.create(movie.id),
+                MovieDetailsFragment::class.java.simpleName
+            )
+            .addToBackStack("trans:${MovieDetailsFragment::class.java.simpleName}")
+            .commit()
     }
 
+    private fun routeBack() {
+        supportFragmentManager.popBackStack()
+    }
+
+    override fun provideMovieRepository(): MovieRepository = jsonMovieRepository
 }
